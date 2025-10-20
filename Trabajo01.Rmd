@@ -3,8 +3,10 @@ title: "Trabajo01"
 author: "Marta Martín Fernández"
 date: "2025-10-15"
 output: 
-  html_document: default
   pdf_document: default
+  html_document: default
+#install.packages('tinytex')
+#tinytex::install_tinytex(bundle = 'TinyTeX-2') # ocupa aprox. 1.8Gb  
 ---
 
 ```{r include=FALSE}
