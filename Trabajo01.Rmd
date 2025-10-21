@@ -5,10 +5,7 @@ date: "2025-10-15"
 output: 
   pdf_document: default
   html_document: default
-#install.packages('tinytex')
-#tinytex::install_tinytex(bundle = 'TinyTeX-2') # ocupa aprox. 1.8Gb  
 ---
-
 ```{r include=FALSE}
 crea.tablaX = function(vector_matporfilas,numalternativas=NULL,numestados=NULL,nb_alternativas=NULL,nb_estados=NULL) {
 
@@ -677,60 +674,170 @@ tablaX = crea.tablaX(c(15000,11000,8000,13000,9000,5000,12000,10000,6000), numal
 
 tablaX
 ```
-
+### **PARA EL CASO FAVORABLE** 
 
 ### CRITERIO DE WALD
 
-
 ```{r, echo=FALSE}
-wald = criterio.Wald(tablaX, favorable=T)
-wald
+
+wald_f = criterio.Wald(tablaX, favorable=TRUE)
+wald_f
+
 ```
+
+
+## La mejor alternativa es la de ahorrar todo el dinero. 
 
 
 ### CRITERIO OPTIMISTA
 
 
 ```{r, echo=FALSE}
-optimista = criterio.Optimista(tablaX, favorable=T)
-optimista
+optimista_f = criterio.Optimista(tablaX, favorable=T)
+optimista_f
+
 ```
+
+
+# La mejor alternativa es la de ahorrar todo el dinero. 
 
 
 ### CRITERIO DE HURWICZ
 
 
 ```{r, echo=FALSE}
-hurwicz = criterio.Hurwicz(tablaX, alfa = 0.7, favorable=T)
-hurwicz
+hurwicz_f = criterio.Hurwicz(tablaX, alfa = 0.7, favorable=T)
+hurwicz_f
+
 ```
+
+
+## La mejor alternativa es la de ahorrar todo el dinero. 
 
 
 ### CRITERIO SAVAGE
 
 
 ```{r , echo=FALSE}
-savage = criterio.Savage(tablaX, favorable=T)
-savage
+savage_f = criterio.Savage(tablaX, favorable=T)
+savage_f
+
 ```
+
+
+## La mejor alternativa es la de ahorrar todo el dinero. 
 
 
 ### CRITERIO DE LAPLACE
 
 
 ```{r , echo=FALSE}
-laplace = criterio.Laplace(tablaX, favorable=T)
-laplace
+laplace_f = criterio.Laplace(tablaX, favorable=T)
+laplace_f
+
 ```
+
+
+## La mejor alternativa es la de ahorrar todo el dinero. 
 
 
 ### CRITERIO DEL PUNTO IDEAL 
 
 
 ```{r , echo=FALSE}
-puntoideal = criterio.PuntoIdeal(tablaX, favorable=T)
-puntoideal
+puntoideal_f = criterio.PuntoIdeal(tablaX, favorable=T)
+puntoideal_f
 ```
+
+
+## La mejor alternativa es la de ahorrar todo el dinero. 
+
+
+# Todos los criterios nos indican que la mejor alternativa es la de ahorrar todo el dinero para una inversión en el futuro. 
+
+
+### **PARA EL CASO NO FAVORABLE** 
+
+
+### CRITERIO DE WALD
+
+
+```{r, echo=FALSE}
+
+wald_nf = criterio.Wald(tablaX, favorable=FALSE)
+wald_nf
+
+```
+
+
+## La mejor alternativa es la de comprar un coche con la mitad del dinero. 
+
+
+### CRITERIO OPTIMISTA
+
+
+```{r, echo=FALSE}
+optimista_nf = criterio.Optimista(tablaX, favorable=FALSE)
+optimista_nf
+
+```
+
+
+## La mejor alternativa es la hacer un viaje con toda la familia y gastar todo el dinero. 
+
+
+### CRITERIO DE HURWICZ
+
+
+```{r, echo=FALSE}
+hurwicz_nf = criterio.Hurwicz(tablaX, alfa = 0.7, favorable=FALSE)
+hurwicz_nf
+
+```
+
+
+## La mejor alternativa es la de hacer el viaje con toda la familia. 
+
+
+### CRITERIO SAVAGE
+
+
+```{r , echo=FALSE}
+savage_nf = criterio.Savage(tablaX, favorable=FALSE)
+savage_nf
+
+```
+
+
+# La mejor alternativa es tanto la de hacer un viaje con la familia gastando todo el dinero como la de comprar un coche con la mitad del dinero. 
+
+
+### CRITERIO DE LAPLACE
+
+
+```{r , echo=FALSE}
+laplace_nf = criterio.Laplace(tablaX, favorable=FALSE)
+laplace_nf
+
+```
+
+
+# La mejor alternativa es la de hacer un viaje con toda la familia gastando todo el dinero.
+
+
+### CRITERIO DEL PUNTO IDEAL 
+
+
+```{r , echo=FALSE}
+puntoideal_nf = criterio.PuntoIdeal(tablaX, favorable=FALSE)
+puntoideal_nf
+
+# La mejor alternativa es la de hacer un viaje con toda la familia y gastar todo el dinero. 
+
+```
+
+
+# En este caso de no favorable, la alternativa que más se repite es la de hacer un viaje con toda la familia que supone gastar todo el dinero en ello.
 
 
 # PROBLEMA 2
@@ -767,14 +874,12 @@ $$
 
 
 $$
-
 \begin{array}{lccc}
 \textbf{Alternativa / Estado} & E_1: \text{A.alta} & E_2: \text{A.media} & E_3: \text{A.poca} \\[4pt]
 A_1: \text{E.locales} & 15000 & 11000 & 8000 \\[4pt]
 A_2: \text{E.nacionales} & 13000 & 9000 & 5000 \\[4pt]
 A_3: \text{Puerta abierta} & 12000 & 10000 & 6000
 \end{array}
-
 $$
 
 
@@ -794,4 +899,9 @@ tablaY
 ```{r, echo=FALSE}
 todos = criterio.Todos(tablaY, alfa=0.7, favorable=T)
 todos
+
 ```
+
+
+
+# Esta función que recoge todos los criterios anteriormente usados en el problema 1 nos indica la opción que tomaría cada uno de ellos, y en este caso la alternativa que más se repite es la de hacer el torneo a puerta abierta para que todo aquel equipo que quiera inscribirse pueda hacerlo. Esto supondrá un aumento de asistencia, lo que conlleva un aumento en la ganancia financiera de esos días.
