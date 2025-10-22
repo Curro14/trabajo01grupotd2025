@@ -1,0 +1,320 @@
+---
+title: "Trabajo 01 grupo 1"
+output:
+  pdf_document: default
+  html_document: default
+date: "2025-10-15"
+---
+
+```{r, echo=FALSE}
+source("teoriadecision_funciones_incertidumbre.R")
+```
+# Trabajo realizado por el grupo 1: 
+## María Saiz, María de Gracia Algaba, Laura Carrasco, Marta Martín y Francisco Espinar.
+
+Problema 1: Lanzamiento de un producto tecnológico. (Curro)
+
+
+Una empresa de tecnología planea lanzar un nuevo dispositivo portátil. Puede optar por un lanzamiento inmediato, esperar 6 meses para mejorar el producto, o cancelar el proyecto. El éxito depende de la reacción del mercado, que es incierta.
+
+Alternativas (decisiones):  
+  
+$$
+\begin{array}{l}
+A_1: \text{Lanzar inmediatamente.} \\
+A_2: \text{Esperar 6 meses para mejorar el producto.} \\
+A_3: \text{Cancelar el proyecto.}
+\end{array}
+$$
+Estados de la naturaleza:  
+  
+$$
+\begin{array}{l}
+S_1: \text{Alta demanda del mercado.} \\
+S_2: \text{Demanda moderada.} \\
+S_3: \text{Baja demanda.}
+\end{array}
+$$
+  
+Pagos esperados (beneficios en millones de euros):
+$$
+\begin{array}{lccc}
+\textbf{Decisión / Estado} & S_1: \text{Alta demanda} & S_2: \text{Demanda moderada} & S_3: \text{Baja demanda} \\[4pt]
+A_1: \text{Lanzar inmediatamente} & 20 & 10 & -5 \\[4pt]
+A_2: \text{Esperar 6 meses} & 15 & 12 & -2 \\[4pt]
+A_3: \text{Cancelar el proyecto} & 0 & 0 & 0
+\end{array}
+$$
+  
+Introducimos los datos en R en forma de matriz:
+```{r}
+Y = matrix(c(20,10,-5,15,12,-2,0,0,0),nrow=3,ncol=3,byrow=TRUE)
+Y
+colnames(Y)=c('S1','S2','S3')
+rownames(Y)=c('A1','A2','A3')
+Y
+```
+Llamamos a cada función por separado para saber cuál es la mejor decisión según cada criterio:
+  
+Según el criterio de Wald (pesimista):
+```{r}
+resultado_wald <- criterio.Wald(Y, favorable = TRUE)
+resultado_wald
+```
+La elección óptima es A3 (Cancelar el proyecto).  
+
+Según el criterio optimista:
+```{r}
+resultado_optimista <- criterio.Optimista(Y, favorable = TRUE)
+resultado_optimista
+```
+La elección óptima es A1 (Lanzar inmediatamente).  
+
+Según el criterio de Hurwicz con un factor de optimismo alfa de 0.6:
+```{r}
+resultado_hurwicz <- criterio.Hurwicz(Y, alfa = 0.6, favorable = TRUE)
+resultado_hurwicz
+```
+La elección óptima es A1 (Lanzar inmediatamente).  
+
+Según el criterio de Savage:
+```{r}
+resultado_savage <- criterio.Savage(Y, favorable = TRUE)
+resultado_savage
+```
+Las dos posibles elecciones óptimas son A1 y A2 (Lanzar inmediatamente o Esperar 6 meses para mejorar el producto).  
+
+Según el criterio de Laplace:
+```{r}
+resultado_laplace <- criterio.Laplace(Y, favorable = TRUE)
+resultado_laplace
+```
+Mismo resultado de Savage.  
+
+Según el criterio del Punto Ideal:
+```{r}
+resultado_punto_ideal <- criterio.PuntoIdeal(Y, favorable = TRUE)
+resultado_punto_ideal
+```
+Mismo resultado de Savage y Laplace.
+
+\newpage
+
+Problema 2: Inversión en energía renovable. (Curro) 
+
+
+Una empresa energética debe decidir en qué tipo de energía renovable invertir: solar o eólica. El rendimiento de cada inversión depende de factores climáticos inciertos durante los próximos 5 años.
+
+Alternativas (decisiones):  
+  
+$$
+\begin{array}{l}
+A_1: \text{Invertir en energía solar} \\
+A_2: \text{Invertir en energía eólica.}
+\end{array}
+$$
+Estados de la naturaleza:  
+  
+$$
+\begin{array}{l}
+S_1: \text{Clima mayormente soleado.} \\
+S_2: \text{Clima mayormente ventoso.} \\
+S_3: \text{Clima inestable (ni sol ni viento predominante).}
+\end{array}
+$$
+Pagos esperados (beneficios netos en millones de euros):  
+  
+$$
+\begin{array}{lccc}
+\textbf{Decisión / Estado} & S_1: \text{Soleado} & S_2: \text{Ventoso} & S_3: \text{Inestable} \\[4pt]
+A_1: \text{Energía solar} & 15 & 6 & 8 \\[4pt]
+A_2: \text{Energía eólica} & 9 & 14 & 7
+\end{array}
+$$
+  Introducimos los datos en R en forma de matriz:  
+```{r}
+X = matrix(c(15, 6, 8, 9, 14, 7),nrow=2,ncol=3,byrow=TRUE)
+X
+colnames(X)=c('S1','S2','S3')
+rownames(X)=c('A1','A2')
+X
+```
+Llamamos a la función criterio.Todos para utilizar todos los métodos de Incertidumbre:
+
+```{r}
+resultado2 <- criterio.Todos(X, alfa = 0.7, favorable = TRUE)
+resultado2
+```
+
+Dependiendo de la actitud del decisor (favorable o desfavorable) y del valor de alfa, la decisión óptima puede cambiar. En este caso, para una actitud favorable y un valor de alfa de 0.7, la alternativa óptima es invertir en energía solar (A1). Para el resto de criterios es la A2 la decisión que se debería adoptar.
+
+
+# PROBLEMA 1 (Marta)
+
+
+#### Nos ha tocado un cupón de 10.000 euros y queremos encontrar la mejor opción para utilizarlo. 
+
+
+#### ALTERNATIVAS:
+    
+    
+$$
+\begin{array}{c}
+A_1: \text{Ahorrar todo el dinero para una inversión en el futuro.}\\
+A_2: \text{Gastar la mayoría del dinero en un viaje en familia.}\\
+A_3: \text{Gastar la mitad del dinero en comprar un coche de segunda mano.}
+\end{array}
+$$
+
+    
+#### Como no sé cómo será mi economía en el futuro, observamos tres posibles ESTADOS:
+
+
+$$
+\begin{array}{c}
+E_1:\ \text{Mi situación económica mejora.}\\
+E_2:\ \text{Mi economía se mantiene estable.}\\
+E_3:\ \text{Mi economía empeora.}
+\end{array}
+$$
+
+
+#### TABLA DE DECISIÓN 
+
+
+
+$$
+\begin{array}{lccc}
+\textbf{Alternativa / Estado} & E_1: \text{Mejora} & E_2: \text{Estable} & E_3: \text{Empeora} \\[4pt]
+A_1: \text{Ahorro} & 15000 & 11000 & 8000 \\[4pt]
+A_2: \text{Viaje familiar} & 13000 & 9000 & 5000 \\[4pt]
+A_3: \text{Coche} & 12000 & 10000 & 6000
+\end{array}
+$$
+
+
+
+Vamos a resolver los distintos métodos de decisión bajo incertidumbre para ver cual es la mejor opción.
+
+
+```{r}
+tablaX = crea.tablaX(c(15000,11000,8000,13000,9000,5000,12000,10000,6000), numalternativas = 3, numestados = 3, nb_alternativas = c("Ahorro","Viaje","Coche"), nb_estados = c("Mejora", "Estable","Empeora"))
+
+tablaX
+```
+
+
+### CRITERIO DE WALD
+
+
+```{r, echo=FALSE}
+wald = criterio.Wald(tablaX, favorable=T)
+wald
+```
+
+
+### CRITERIO OPTIMISTA
+
+
+```{r, echo=FALSE}
+optimista = criterio.Optimista(tablaX, favorable=T)
+optimista
+```
+
+
+### CRITERIO DE HURWICZ
+
+
+```{r, echo=FALSE}
+hurwicz = criterio.Hurwicz(tablaX, alfa = 0.7, favorable=T)
+hurwicz
+```
+
+
+### CRITERIO SAVAGE
+
+
+```{r , echo=FALSE}
+savage = criterio.Savage(tablaX, favorable=T)
+savage
+```
+
+
+### CRITERIO DE LAPLACE
+
+
+```{r , echo=FALSE}
+laplace = criterio.Laplace(tablaX, favorable=T)
+laplace
+```
+
+
+### CRITERIO DEL PUNTO IDEAL 
+
+
+```{r , echo=FALSE}
+puntoideal = criterio.PuntoIdeal(tablaX, favorable=T)
+puntoideal
+```
+
+
+# PROBLEMA 2 (Marta)
+
+
+#### Queremos organizar un troneo de voleibol para la pretemporada en el pabellón de nuestra ciudad. Tenemos que decidir qué equipos nos interesa que vengan para ver la repercusión que puede tener en la ciudad. 
+
+
+#### ALTERNATIVAS:
+
+    
+$$
+\begin{array}{c}
+A_1: \text{Organizar el torneo solo para los equipos locales.}\\
+A_2: \text{Invitar al torneo a equipos nacionales amigos.}\\
+A_3: \text{Hacer el torneo a puerta abierta, que cualquier equipo pueda participar.}
+\end{array}
+$$
+  
+    
+#### La repercusión de estas invitaciones repercute en la asistencia y lo que se ganará durante esos días, distinguiendose 3 ESTADOS:
+
+
+$$
+\begin{array}{c}
+E_1:\ \text{Alta asistendia de público .}\\
+E_2:\ \text{Asistencia media pero notable.}\\
+E_3:\ \text{Poca asistencia.}
+\end{array}
+$$
+
+
+#### TABLA DE DECISIÓN 
+
+
+$$
+\begin{array}{lccc}
+\textbf{Alternativa / Estado} & E_1: \text{A.alta} & E_2: \text{A.media} & E_3: \text{A.poca} \\[4pt]
+A_1: \text{E.locales} & 15000 & 11000 & 8000 \\[4pt]
+A_2: \text{E.nacionales} & 13000 & 9000 & 5000 \\[4pt]
+A_3: \text{Puerta abierta} & 12000 & 10000 & 6000
+\end{array}
+$$
+
+
+Vamos a resolver los distintos métodos de decisión bajo incertidumbre para ver cual es la mejor opción, esta vez utilizando una función donde se realizan todos los criterios a la vez.
+
+
+```{r}
+tablaY = crea.tablaX(c(15,12,8,25,15,5,40,10,-5), numalternativas = 3, numestados = 3, nb_alternativas = c("Equipos locales","Equipos nacionales","Puerta abierta"), nb_estados = c("Alta asistencia", "Media asistencia","Poca asistencia"))
+
+tablaY
+```
+
+
+#### TODOS LOS CRITERIOS JUNTOS EN UNA TABLA.
+
+
+```{r, echo=FALSE}
+todos = criterio.Todos(tablaY, alfa=0.7, favorable=T)
+todos
+```
