@@ -159,10 +159,11 @@ A_3: \text{Puerta abierta} & 12000 & 10000 & 6000
 $$
 
 
-PROBLEMA 1 (Laura)
+## PROBLEMA 1 (Laura)
 Una empresa de ropa sevillana debe decidir donde comenzar a expandir su negocio en otras cuidades.
 
 Las alternativas son:
+
 $$
 \begin{array}{l}
 A_1: \text{Cáceres} \\
@@ -172,6 +173,7 @@ A_3: \text{Cádiz}
 $$
 
 El éxito depende del comportamiento del mercado en estas zonas. Pueden considerarse tres situaciones: 
+
 $$
 \begin{array}{l}
 S_1: \text{Baja demanda} \\
@@ -180,10 +182,10 @@ S_3: \text{Alta demanda}
 \end{array}
 $$
 
-Los beneficios esperados se muestran en la siguiente tabla en miles de €:
+Los beneficios esperados se esperan en la siguiente tabla en miles de €:
 $$
 \begin{array}{lccc}
-\textbf{Alternativa / Estado} & S_1: \text{D.baja} & S_2: \text{D.media} & S_3: \text{D.alta} \\[4pt]
+\textbf{Alternativa / Estado} & E_1: \text{Baja demanda} & E_2: \text{Demanda media} & E_3: \text{Alta demanda} \\[4pt]
 A_1: \text{Cáceres} & 30 & 70 & 90 \\[4pt]
 A_2: \text{Madrid} & 50 & 80 & 60 \\[4pt]
 A_3: \text{Cádiz} & 90 & 40 & 20
@@ -193,7 +195,7 @@ $$
 Los costes esperados se muestran en la siguiente tabla en miles de €:
 $$
 \begin{array}{lccc}
-\textbf{Alternativa / Estado} & S_1: \text{D.baja} & S_2: \text{D.media} & S_3: \text{D.alta} \\[4pt]
+\textbf{Alternativa / Estado} & E_1: \text{Baja demanda} & E_2: \text{Demanda media} & E_3: \text{Alta demanda} \\[4pt]
 A_1: \text{Cáceres} & 90 & 50 & 30 \\[4pt]
 A_2: \text{Madrid} & 80 & 40 & 60 \\[4pt]
 A_3: \text{Cádiz} & 20 & 70 & 90
@@ -204,10 +206,11 @@ $$
 de beneficios y los de costes?
 
 
-PROBLEMA 2 (Laura)
+## PROBLEMA 2(Laura)
 En una cuidad se está planteando restringir el uso de coches en el centro de esta para reducir las emisiones contaminantes. Las autoridades deben decidir qué vehículos podrán acceder a la zona restringida.
 
-Tenemos tres alternativas sobre a que vehículos permitir el acceso:  
+Tenemos tres alternativas sobre a que vehículos permitir el acceso:
+    
 $$
 \begin{array}{l}
 A_1: \text{Sólo residentes de la zona} \\
@@ -217,21 +220,23 @@ A_3: \text{Todos los coches}
 $$
 
 La decisión dependerá de las condiciones de los tipos de coches, representadas por tres posibles estados de la naturaleza: 
+
 $$
 \begin{array}{l}
-S_1: \text{Año de fabricación} \\
-S_2: \text{Tipo de combustible} \\
-S_3: \text{Nivel de emisiones medio}
+E_1: \text{Año de fabricación} \\
+E_2: \text{Tipo de combustible} \\
+E_3: \text{Nivel de emisiones medio}
 \end{array}
 $$
 
 Los costes asociados (en miles de euros) representan el gasto que tendría el ayuntamiento en medidas complementarias (control, señalizacion, mantenimiento) según la alternativa elegida y el entorno.
+
 $$
 \begin{array}{lccc}
-\textbf{Alternativa / Estado} & S_1: \text{Año} & S_2: \text{Combustible} & S_3: \text{Emisiones} \\[4pt]
-A_1: \text{Residentes} & 90 & 50 & 30 \\[4pt]
-A_2: \text{C.Eléctricos} & 80 & 40 & 60 \\[4pt]
-A_3: \text{Todos} & 20 & 70 & 90
+\textbf{Alternativa / Estado} & E_1: \text{Año de fabricación} & E_2: \text{Tipo de combustible} & E_3: \text{Nivel de emisiones medio} \\[4pt]
+A_1: \text{Cáceres} & 500 & 700 & 800 \\[4pt]
+A_2: \text{Madrid} & 900 & 600 & 400 \\[4pt]
+A_3: \text{Cádiz} & 300 & 800 & 1000
 \end{array}
 $$
 
