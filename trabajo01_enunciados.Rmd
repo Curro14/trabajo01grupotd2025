@@ -206,7 +206,7 @@ $$
 de beneficios y los de costes?
 
 
-## PROBLEMA 2(Laura)
+## PROBLEMA 2 (Laura)
 En una cuidad se está planteando restringir el uso de coches en el centro de esta para reducir las emisiones contaminantes. Las autoridades deben decidir qué vehículos podrán acceder a la zona restringida.
 
 Tenemos tres alternativas sobre a que vehículos permitir el acceso:
