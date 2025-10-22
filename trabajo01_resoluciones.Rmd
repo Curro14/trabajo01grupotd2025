@@ -435,3 +435,181 @@ todos
 
 
 # Esta función que recoge todos los criterios anteriormente usados en el problema 1 nos indica la opción que tomaría cada uno de ellos, y en este caso la alternativa que más se repite es la de hacer el torneo a puerta abierta para que todo aquel equipo que quiera inscribirse pueda hacerlo. Esto supondrá un aumento de asistencia, lo que conlleva un aumento en la ganancia financiera de esos días.
+
+
+## PROBLEMA 1 (Laura)
+Una empresa de ropa sevillana debe decidir donde comenzar a expandir su negocio en otras cuidades.
+
+Las alternativas son:
+
+$$
+\begin{array}{l}
+A_1: \text{Cáceres} \\
+A_2: \text{Madrid} \\
+A_3: \text{Cádiz}
+\end{array}
+$$
+
+El éxito depende del comportamiento del mercado en estas zonas. Pueden considerarse tres situaciones: 
+
+$$
+\begin{array}{l}
+S_1: \text{Baja demanda} \\
+S_2: \text{Demanda media} \\
+S_3: \text{Alta demanda}
+\end{array}
+$$
+
+Los beneficios esperados se esperan en la siguiente tabla en miles de €:
+
+```{r}
+tb1<- crea.tablaX(c(30,70,90, 50,80,60, 90,40,20), numalternativas = 3, numestados = 3, nb_alternativas = c("Cáceres", "Madrid", "Cádiz"), nb_estados=c("baja_demanda", "demanda_media", "alta_demanda"))
+tb1
+```
+
+Los costes esperados se muestran en la siguiente tabla en miles de €:
+
+```{r}
+tb12<- crea.tablaX(c(90,50,30, 80,40,60, 20,70,90), numalternativas = 3, nb_alternativas = c("Cáceres", "Madrid", "Cádiz"), nb_estados=c("baja_demanda", "demanda_media", "alta_demanda"))
+tb12
+```
+
+
+*FAVORABLE*
+```{r}
+criterio.Wald(tb1, favorable = TRUE)
+```
+
+Según el criterio de Wald, lo mejor es seleccionar la alternativa 2, es decir, poner la nueva tienda en Madrid.
+
+
+```{r}
+criterio.Optimista(tb1, favorable = TRUE)
+```
+
+Según el criterio Optimista tenemos dos posibles soluciones óptimas, la alternativa 1 y la 3, es decir, poner la nueva tienda en Cáceres y en Cádiz.
+
+
+para alfa=0.5
+```{r}
+criterio.Hurwicz(tb1, alfa = 0.5, favorable = TRUE)
+```
+
+```{r}
+dibuja.criterio.Hurwicz_Intervalos(tb1, favorable = TRUE, T)
+```
+
+Según el criterio de Hurwicz, para un valor de alfa entre 0 y 0.667 la mejor alternativa es la 2 (poner la nueva tienda en Madrid), y para alfa entre 0.667 y 1 la mejor alternativa es la 1 (poner la nueva tienda en Cáceres).
+
+
+```{r}
+criterio.Savage(tb1, favorable = TRUE)
+```
+
+Según el criterio de Savage la alternativa optina es la segunda, es decir, poner la nueva tienda en Madrid.
+
+
+```{r}
+criterio.PuntoIdeal(tb1, favorable = TRUE)
+```
+
+Según el criterio PuntoIdeal la mejor opción es la alternativa 2, es decir, poner la nueva tienda en Madrid.
+
+
+```{r}
+criterio.Laplace(tb1, favorable =T)
+```
+
+Según el criterio de Laplace tenemos dos posibles soluciones óptimas, la alternativa 1 y la 2, es decir, poner la nueva tienda en Cáceres y en Madrid.
+
+En conclusión, la mejor alternativa para el caso de beneficios es segunda, poner la nueva tienda en Madrid, ya que es 5 veces óptima, en comparación con la primera y la tercera que son 2 y 1 vez óptimas.
+
+
+*DESFAVORABLE*
+```{r}
+criterio.Wald(tb12, favorable = F)
+```
+
+Según el criterio de Wald la mejor opción es la alternativa dos, es decir, poner la nueva tienda en Madrid.
+
+
+```{r}
+criterio.Optimista(tb12, favorable = F)
+```
+
+Según el criterio de Optimista la mejor opción es la alternativa tres, es decir, poner la nueva tienda en Cádiz.
+
+
+para alfa=0.5
+```{r}
+criterio.Hurwicz(tb12, alfa = 0.5, favorable = F)
+```
+
+```{r}
+dibuja.criterio.Hurwicz_Intervalos(tb12, favorable = F, T)
+```
+
+Según el criterio de Hurwicz, para un valor de alfa entre 0 y 0.333 la mejor alternativa es la 2 (poner la nueva tienda en Madrid), y para alfa entre 0.333 y 1 la mejor alternativa es la 3 (poner la nueva tienda en Cádiz).
+
+
+```{r}
+criterio.Savage(tb12, favorable = F)
+```
+
+Según el criterio de Savage tenemos dos posibles soluciones óptimas, la alternativa 2 y la 3, es decir, poner la nueva tienda en Madrid y en Cádiz.
+
+
+```{r}
+criterio.PuntoIdeal(tb12, favorable = F)
+```
+
+Según el criterio punto ideal tenemos dos posibles soluciones óptimas, la alternativa 2 y la 3, es decir, poner la nueva tienda en Madrid y en Cádiz.
+
+
+```{r}
+criterio.Laplace(tb12, favorable =F)
+```
+
+Según el criterio de Laplace la mejor opción es la alternativa uno, es decir, poner la nueva tienda en Cáceres.
+
+En conclusión, la mejor alternativa para el caso de costes es tercera, poner la nueva tienda en Cádiz, ya que es 4 veces óptima, en comparación con la primera y la tercera que son 0 y 3 veces óptimas.
+
+
+## PROBLEMA 2 (Laura)
+En una cuidad se está planteando restringir el uso de coches en el centro de esta para reducir las emisiones contaminantes. Las autoridades deben decidir qué vehículos podrán acceder a la zona restringida.
+
+Tenemos tres alternativas sobre a que vehículos permitir el acceso:
+    
+$$
+\begin{array}{l}
+A_1: \text{Sólo residentes de la zona} \\
+A_2: \text{Sólo coches eléctricos} \\
+A_3: \text{Todos los coches}
+\end{array}
+$$
+
+
+La decisión dependerá de las condiciones de los tipos de coches, representadas por tres posibles estados de la naturaleza: 
+
+$$
+\begin{array}{l}
+S_1: \text{Año de fabricación} \\
+S_2: \text{Tipo de combustible} \\
+S_3: \text{Nivel de emisiones medio}
+\end{array}
+$$
+
+
+Los costes asociados (en miles de euros) representan el gasto que tendría el ayuntamiento en medidas complementarias (control, señalizacion, mantenimiento) según la alternativa elegida y el entorno.
+
+```{r}
+tb2<- crea.tablaX(c(500,700,800, 900,600,400, 300,800,1000), numalternativas = 3, nb_alternativas = c("solo_residentes", "solo_eléctricos", "todos"), nb_estados = c("año_fabricación", "tipo_combustible", "nivel_emisiones"))
+tb2
+```
+
+para alfa=0.5
+```{r}
+criterio.Todos(tb2, alfa=0.5, favorable = F)
+```
+
+Aplicando todos los criterios a nuestro problema consideramos que la alternativa 1 (permitir acceso a la zona restringida sólo a los residentes de esta) es 4 veces óptima, la alternativa 2 (permitir acceso sólo a coche eléctricos) es 2 veces óptima y la alternativa 3 (permitir acceso a todos los coches) es 2 veces óptima. Por tanto, la mejor alternativa es la 1, al ser la que se ha elegido en más criterios en comparación a las demás.
