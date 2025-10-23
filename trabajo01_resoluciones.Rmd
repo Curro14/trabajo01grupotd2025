@@ -613,3 +613,182 @@ criterio.Todos(tb2, alfa=0.5, favorable = F)
 ```
 
 Aplicando todos los criterios a nuestro problema consideramos que la alternativa 1 (permitir acceso a la zona restringida sólo a los residentes de esta) es 4 veces óptima, la alternativa 2 (permitir acceso sólo a coche eléctricos) es 2 veces óptima y la alternativa 3 (permitir acceso a todos los coches) es 2 veces óptima. Por tanto, la mejor alternativa es la 1, al ser la que se ha elegido en más criterios en comparación a las demás.
+
+\newpage
+# PROBLEMA 1 (María Saiz)
+
+Aplicar los criterios de decisión bajo incertidumbre a los problemas cuya matriz de valores
+numéricos vienen dadas en las tablas siguientes:
+
+|     |  S1  |  S2  |  S3  |  S4  |
+|:----|:----:|:----:|:----:|:----:|
+| **A1** |  90  |  40  | 130  |  20  |
+| **A2** | 127  |  67  |  43  |  60  |
+| **A3** | 100  |  90  |  30  |  55  |
+| **A4** |  40  |  90  |  95  |  80  |
+
+Realizarlo tanto para el caso favorable (beneficios) como para el desfavorable(costos).
+  
+#### Caso Favorable (beneficios)
+  
+```{r}
+x1a <- crea.tablaX(
+  c(90,40,130,20,
+    127,67,43,60,
+    100,90,30,55,
+    40,90,95,80),
+  numalternativas = 4, numestados = 4,
+  nb_alternativas = c("A1","A2","A3","A4"),
+  nb_estados = c("S1","S2","S3","S4")
+)
+x1a
+
+```
+
+```{r}
+criterio.Wald(x1a, favorable=TRUE)
+
+```
+Segun el criterio de Wald, la mejor alternativa es la 2.
+
+```{r}
+
+criterio.Optimista(x1a, favorable=T)
+
+```
+Según el criterio Optimista, la mejor alternativa es la 1.
+
+```{r}
+
+criterio.Hurwicz(x1a, alfa= 0.5, favorable=T)
+
+```
+Según el criterio de Hurwicz, la mejor alternativa es la 2.
+
+```{r}
+
+dibuja.criterio.Hurwicz_Intervalos(x1a, favorable=T, T)
+
+```
+Para alfa con valor entre (0 , 0.885) , la mejor alternativa es la 2.
+Para alfa con valor entre (0.885 , 1) , la mejor alternativa es la 1.
+
+```{r}
+
+criterio.Savage(x1a, favorable=T)
+```
+Segun el criterio de Savage, la mejor alternativa es la 1.
+
+```{r}
+criterio.PuntoIdeal(x1a, favorable=T)
+```
+Segun el criterio de Punto Ideal , la mejor alternativa es la 1.
+
+```{r}
+criterio.Laplace(x1a, favorable=T)
+```
+
+Segun el criterio de LaPlace, la mejor alternativa es la 4.
+
+#### Caso Desfavorable (costes)
+  
+```{r}
+x1b <- crea.tablaX(
+  c(90,40,130,20,
+    127,67,43,60,
+    100,90,30,55,
+    40,90,95,80),
+  numalternativas = 4, numestados = 4,
+  nb_alternativas = c("A1","A2","A3","A4"),
+  nb_estados = c("S1","S2","S3","S4")
+)
+x1b
+
+```
+
+```{r}
+criterio.Wald(x1b, favorable=FALSE)
+
+```
+Segun el criterio de Wald, la mejor alternativa es la 4.
+
+```{r}
+
+criterio.Optimista(x1b, favorable=F)
+
+```
+Según el criterio Optimista, la mejor alternativa es la 1.
+
+```{r}
+
+criterio.Hurwicz(x1b, alfa= 0.5, favorable=F)
+
+```
+Según el criterio de Hurwicz, la mejor alternativa es la 3.
+
+```{r}
+
+dibuja.criterio.Hurwicz_Intervalos(x1b, favorable=F, T)
+
+```
+Para alfa con valor entre (0 , 0.333) , la mejor alternativa es la 4.
+Para alfa con valor entre (0.333 , 0.75) , la mejor alternativa es la 3.
+Para alfa con valor entre (0.75 , 1) , la mejor alternativa es la 1.
+
+```{r}
+
+criterio.Savage(x1b, favorable=F)
+```
+Segun el criterio de Savage, la mejor alternativa es la 3.
+
+```{r}
+criterio.PuntoIdeal(x1b, favorable=F)
+```
+Segun el criterio de Punto Ideal , la mejor alternativa es la 3.
+
+```{r}
+criterio.Laplace(x1b, favorable=F)
+```
+
+Segun el criterio de LaPlace, la mejor alternativa es la 3.
+
+
+\newpage
+
+# PROBLEMA 2 (María Saiz)
+
+
+La empresa UrbanMove quiere mejorar la calidad de su servicio de autobuses y aumentar sus ingresos. Para ello, está considerando tres alternativas:
+
+  A1: Aumentar la frecuencia de los autobuses
+  A2: Instalar pantallas con horarios en tiempo real
+  A3: Ofrecer una app con descuentos y seguimiento de rutas
+
+El resultado económico depende de 4 grados de demanda durante el año, que son:
+
+  D1: Muy baja demanda
+  D2: Baja demanda
+  D3: Demanda media
+  D4: Alta demanda
+
+Los beneficios estimados (en miles de euros al año) para cada alternativa, según cada grado de demanda, son los siguientes:
+
+|     |  D1  |  D2  |  D3  |  D4  |
+|:----|:----:|:----:|:----:|:----:|
+| **A1** |  30  |  60  | 100  | 150  |
+| **A2** |  40  |  70  | 110  | 130  |
+| **A3** |  20  |  50  |  90  | 180  |
+  
+```{r}
+x2 <- crea.tablaX(
+  c(30,60,100,150,
+    40,70,110,130,
+    20,50,90,180),
+  numalternativas = 3, numestados = 4,
+  nb_alternativas = c("A1_Frecuencia","A2_Pantallas","A3_Descuentos"),
+  nb_estados = c("D1","D2","D3","D4")
+)
+
+criterio.Todos(x2, alfa=0.4, favorable=TRUE)
+```
+Vemos que para el criterio de Wald y el criterio de Laplace la mejor alternativa es la 2, es decir para aumentar los ingresos conviene instalar pantallas con horarios en tiempo real. Sin embargo, para el criterio optimista, de Hurwicz y de Savage lo recomendable es ofrecer una app con descuentos y seguimiento de rutas (alternativa 3). La alternativa 1 solo aparece como recomendable en el criterio de Punto Ideal junto a la alternativa 3. En conclusión, la más repetida es la A3.
