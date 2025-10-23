@@ -243,3 +243,43 @@ $$
 ¿Cuál es la alternativa óptima para el ayuntamiento según los diferentes criterios de decisión bajo
 incertidumbre, teniendo en cuenta los costes asociados a cada combinación de alternativa y
 estado de la naturaleza?
+
+
+## PROBLEMA 1 (Maria Saiz)
+
+Aplicar los criterios de decisión bajo incertidumbre a los problemas cuya matriz de valores
+numéricos vienen dadas en las tablas siguientes:
+
+|     |  S1  |  S2  |  S3  |  S4  |
+|:----|:----:|:----:|:----:|:----:|
+| **A1** |  90  |  40  | 130  |  20  |
+| **A2** | 127  |  67  |  43  |  60  |
+| **A3** | 100  |  90  |  30  |  55  |
+| **A4** |  40  |  90  |  95  |  80  |
+
+  
+Realizarlo tanto para el caso favorable (beneficios) como para el desfavorable(costos).
+
+
+## PROBLEMA 2 (Maria Saiz)
+
+La empresa UrbanMove quiere mejorar la calidad de su servicio de autobuses y aumentar sus ingresos. Para ello, está considerando tres alternativas:
+
+  A1: Aumentar la frecuencia de los autobuses
+  A2: Instalar pantallas con horarios en tiempo real
+  A3: Ofrecer una app con descuentos y seguimiento de rutas
+
+El resultado económico depende de 4 grados de demanda durante el año, que son:
+
+  D1: Muy baja demanda
+  D2: Baja demanda
+  D3: Demanda media
+  D4: Alta demanda
+
+Los beneficios estimados (en miles de euros al año) para cada alternativa, según cada grado de demanda, son los siguientes:
+
+|     |  D1  |  D2  |  D3  |  D4  |
+|:----|:----:|:----:|:----:|:----:|
+| **A1** |  30  |  60  | 100  | 150  |
+| **A2** |  40  |  70  | 110  | 130  |
+| **A3** |  20  |  50  |  90  | 180  |
