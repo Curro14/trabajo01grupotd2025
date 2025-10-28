@@ -792,3 +792,7 @@ x2 <- crea.tablaX(
 criterio.Todos(x2, alfa=0.4, favorable=TRUE)
 ```
 Vemos que para el criterio de Wald y el criterio de Laplace la mejor alternativa es la 2, es decir para aumentar los ingresos conviene instalar pantallas con horarios en tiempo real. Sin embargo, para el criterio optimista, de Hurwicz y de Savage lo recomendable es ofrecer una app con descuentos y seguimiento de rutas (alternativa 3). La alternativa 1 solo aparece como recomendable en el criterio de Punto Ideal junto a la alternativa 3. En conclusión, la más repetida es la A3.
+
+
+
+MARIIAA
